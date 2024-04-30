@@ -4,6 +4,7 @@ using JobInMinuteServer.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace JobInMinuteServer.Migrations
 {
     [DbContext(typeof(JobInMinuteDbContext))]
-    partial class JobInMinuteDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240430081632_init222")]
+    partial class init222
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -52,12 +55,7 @@ namespace JobInMinuteServer.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
                     b.HasKey("ID");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Candidats");
                 });
@@ -140,12 +138,7 @@ namespace JobInMinuteServer.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
                     b.HasKey("ID");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Employers");
                 });
@@ -227,17 +220,6 @@ namespace JobInMinuteServer.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("JobInMinuteServer.Models.Candidate", b =>
-                {
-                    b.HasOne("JobInMinuteServer.Models.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("JobInMinuteServer.Models.CandidateJobs", b =>
                 {
                     b.HasOne("JobInMinuteServer.Models.Candidate", "Candidate")
@@ -265,17 +247,6 @@ namespace JobInMinuteServer.Migrations
                     b.HasOne("JobInMinuteServer.Models.CandidatePreferedCities", null)
                         .WithMany("Cities")
                         .HasForeignKey("CandidatePreferedCitiesCandidateID");
-                });
-
-            modelBuilder.Entity("JobInMinuteServer.Models.Employer", b =>
-                {
-                    b.HasOne("JobInMinuteServer.Models.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("JobInMinuteServer.Models.Job", b =>

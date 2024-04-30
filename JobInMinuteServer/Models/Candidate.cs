@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.Identity.Client;
+using System.ComponentModel.DataAnnotations;
 
 namespace JobInMinuteServer.Models
 {
@@ -6,6 +7,8 @@ namespace JobInMinuteServer.Models
     {
         [Key]
         public int ID { get; set; }
+        public int UserId { get; set; }
+        public User User { get; set; }
         public float Experience { get; set; }
         public string Education { get; set; }
         public string Interests { get; set; }

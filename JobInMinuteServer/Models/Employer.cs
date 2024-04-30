@@ -6,6 +6,8 @@ namespace JobInMinuteServer.Models
     {
         [Key]
         public int ID { get; set; }
+        public int UserId { get; set; }
+        public User User { get; set; }
         public string BN_number { get; set; }
         [Required]
         public string CompanyName { get; set; }
