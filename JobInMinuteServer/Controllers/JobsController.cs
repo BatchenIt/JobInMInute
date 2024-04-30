@@ -7,22 +7,23 @@ namespace JobInMinuteServer.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class CityController : Controller
+    public class JobsController : Controller
     {
-        private readonly ICityRepository _cityRepository;
 
-        public CityController(ICityRepository cityRepository)
+        private readonly IJobRepository _jobRepository;
+
+        public JobsController(IJobRepository jobRepository)
         {
-            _cityRepository = cityRepository;
+            _jobRepository = jobRepository;
         }
 
 
-        [HttpPost(Name = "saveCity")]
-        public async Task<IActionResult> SaveCity([FromBody] City city)
+        [HttpPost(Name = "saveJob")]
+        public async Task<IActionResult> SaveJob([FromBody] Job job)
         {
             try
             {
-                await _cityRepository.SaveCity(city);
+                await _jobRepository.SaveJob(job);
                 return NoContent();
             }
             catch (Exception ex)
@@ -32,13 +33,13 @@ namespace JobInMinuteServer.Controllers
 
         }
 
-        [HttpGet(Name = "getCity")]
-        public async Task<IActionResult> GetCityByCityCode(int cityCode)
+        [HttpGet(Name = "getJob")]
+        public async Task<IActionResult> GetJobById(int jobId)
         {
             try
             {
-                City city = await _cityRepository.GetCityByCityCode(cityCode);
-                return Ok(city);
+                Job job = await _jobRepository.GetJobById(jobId);
+                return Ok(job);
             }
             catch (Exception ex)
             {
