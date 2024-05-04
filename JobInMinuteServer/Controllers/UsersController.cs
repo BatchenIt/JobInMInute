@@ -16,8 +16,8 @@ namespace JobInMinuteServer.Controllers
             _userRepository = userRepository;
         }
 
-
-        [HttpPost(Name = "saveUser")]
+        [HttpPost]
+        [Route("saveUser")]
         public async Task<IActionResult> SaveUser([FromBody] User user)
         {
             try
@@ -32,7 +32,8 @@ namespace JobInMinuteServer.Controllers
 
         }
 
-        [HttpGet(Name = "getUser")]
+        [HttpGet]
+        [Route("getUser")]
         public async Task<IActionResult> GetUserById(int userId)
         {
             try {
