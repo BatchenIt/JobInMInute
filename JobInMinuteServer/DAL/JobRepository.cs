@@ -14,9 +14,9 @@ namespace JobInMinuteServer.DAL
 
         public async Task SaveJob(Job job)
         {
-
+            
             _context.Jobs.Add(job);
-
+          
             await _context.SaveChangesAsync();
         }
         public async Task<Job> GetJobById(int jobId)
