@@ -92,8 +92,7 @@ namespace JobInMinuteServer.Migrations
                     b.HasKey("CandidateID");
 
                     b.HasIndex("CandidateID1");
-
-                    b.ToTable("CandidatePreferedCities");
+                  
                 });
 
             modelBuilder.Entity("JobInMinuteServer.Models.City", b =>
@@ -104,8 +103,7 @@ namespace JobInMinuteServer.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CityCode"));
 
-                    b.Property<int?>("CandidatePreferedCitiesCandidateID")
-                        .HasColumnType("int");
+                   
 
                     b.Property<string>("CityName")
                         .IsRequired()
@@ -113,7 +111,6 @@ namespace JobInMinuteServer.Migrations
 
                     b.HasKey("CityCode");
 
-                    b.HasIndex("CandidatePreferedCitiesCandidateID");
 
                     b.ToTable("Cities");
                 });
@@ -155,9 +152,7 @@ namespace JobInMinuteServer.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("CandidateJobsCandidateID")
-                        .HasColumnType("int");
-
+              
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -180,8 +175,7 @@ namespace JobInMinuteServer.Migrations
 
                     b.HasKey("ID");
 
-                    b.HasIndex("CandidateJobsCandidateID");
-
+              
                     b.HasIndex("EmployerId");
 
                     b.ToTable("Jobs");
@@ -198,23 +192,9 @@ namespace JobInMinuteServer.Migrations
                     b.Navigation("Candidate");
                 });
 
-            modelBuilder.Entity("JobInMinuteServer.Models.CandidatePreferedCities", b =>
-                {
-                    b.HasOne("JobInMinuteServer.Models.Candidate", "Candidate")
-                        .WithMany()
-                        .HasForeignKey("CandidateID1")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+           
 
-                    b.Navigation("Candidate");
-                });
-
-            modelBuilder.Entity("JobInMinuteServer.Models.City", b =>
-                {
-                    b.HasOne("JobInMinuteServer.Models.CandidatePreferedCities", null)
-                        .WithMany("Cities")
-                        .HasForeignKey("CandidatePreferedCitiesCandidateID");
-                });
+           
 
             modelBuilder.Entity("JobInMinuteServer.Models.Job", b =>
                 {
@@ -236,10 +216,7 @@ namespace JobInMinuteServer.Migrations
                     b.Navigation("Jobs");
                 });
 
-            modelBuilder.Entity("JobInMinuteServer.Models.CandidatePreferedCities", b =>
-                {
-                    b.Navigation("Cities");
-                });
+           
 #pragma warning restore 612, 618
         }
     }

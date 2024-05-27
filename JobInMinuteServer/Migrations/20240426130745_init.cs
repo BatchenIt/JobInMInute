@@ -138,17 +138,9 @@ namespace JobInMinuteServer.Migrations
                     CityCode = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CityName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CandidatePreferedCitiesCandidateID = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Cities", x => x.CityCode);
-                    table.ForeignKey(
-                        name: "FK_Cities_CandidatePreferedCities_CandidatePreferedCitiesCandidateID",
-                        column: x => x.CandidatePreferedCitiesCandidateID,
-                        principalTable: "CandidatePreferedCities",
-                        principalColumn: "CandidateID");
-                });
+           
+                }
+               );
 
             migrationBuilder.CreateIndex(
                 name: "IX_CandidateJobs_CandidateID1",
@@ -160,10 +152,7 @@ namespace JobInMinuteServer.Migrations
                 table: "CandidatePreferedCities",
                 column: "CandidateID1");
 
-            migrationBuilder.CreateIndex(
-                name: "IX_Cities_CandidatePreferedCitiesCandidateID",
-                table: "Cities",
-                column: "CandidatePreferedCitiesCandidateID");
+            
 
             migrationBuilder.CreateIndex(
                 name: "IX_Jobs_CandidateJobsCandidateID",

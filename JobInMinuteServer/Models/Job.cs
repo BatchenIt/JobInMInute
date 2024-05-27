@@ -1,19 +1,55 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace JobInMinuteServer.Models
 {
-    public class Job
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+
+    namespace JobInMinuteServer.Models
     {
-        [Key]
-        public int ID { get; set; }
-        [Required]
-        public int EmployerId { get; set; }
-        public Employer Employer { get; set; }
-        public string Title { get; set; }
-        public string Description { get; set; }
-        public string Adress { get; set; }
-        public DateTime StartAt{ get; set; }
-        public DateTime EndAt { get; set; }
-        public float Salary { get; set; }
+        using System;
+        using System.ComponentModel.DataAnnotations;
+        using System.ComponentModel.DataAnnotations.Schema;
+
+        namespace JobInMinuteServer.Models
+        {
+            public class Job
+            {
+                [Key]
+                public int JobID { get; set; }
+
+                [ForeignKey("EmployerID")]
+                public int EmployerId { get; set; }
+                public Employer? Employer { get; set; }
+
+                [ForeignKey("CityCode")]
+                public int CityCode { get; set; }
+                public City? City { get; set; }
+
+                [Required]
+                public string Title { get; set; }
+
+                [Required]
+                public string Description { get; set; }
+
+                [Required]
+                public string SkillsRequired { get; set; }
+
+                [Required]
+                public string Address { get; set; }
+
+                [Required]
+                public DateTime StartAt { get; set; }
+
+                [Required]
+                public DateTime EndAt { get; set; }
+
+                [Required]
+                public float Salary { get; set; }
+            }
+        }
+
     }
+
 }

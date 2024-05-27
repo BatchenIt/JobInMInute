@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using JobInMinuteServer.Models.JobInMinuteServer.Models;
+using JobInMinuteServer.Models.JobInMinuteServer.Models.JobInMinuteServer.Models;
+using System.ComponentModel.DataAnnotations;
 
 namespace JobInMinuteServer.Models
 {
@@ -7,6 +9,8 @@ namespace JobInMinuteServer.Models
         [Key]
         public int CandidateID { get; set; }
         public Candidate Candidate { get; set; }
-        public ICollection<Job> Jobs { get; set; }
+        [Required]
+        //public int JobID { get; set; }
+        public IEnumerable<Job> Job { get; set; }
     }
 }

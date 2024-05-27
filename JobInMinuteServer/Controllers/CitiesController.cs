@@ -1,4 +1,5 @@
-﻿using JobInMinuteServer.DAL.Interfaces;
+﻿using JobInMinuteServer.DAL;
+using JobInMinuteServer.DAL.Interfaces;
 using JobInMinuteServer.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -16,10 +17,15 @@ namespace JobInMinuteServer.Controllers
             _cityRepository = cityRepository;
         }
 
-
-        [HttpPost(Name = "saveCity")]
+       
+        [HttpPost]
+        [Route("saveCity")]
         public async Task<IActionResult> SaveCity([FromBody] City city)
         {
+            if (city == null)
+            {
+                return BadRequest("City data is missing.");
+            }
             try
             {
                 await _cityRepository.SaveCity(city);
@@ -44,7 +50,14 @@ namespace JobInMinuteServer.Controllers
             {
                 return BadRequest(ex.ToString());
             }
+        }
 
+
+        [HttpGet("GetCities")]
+        public async Task<ActionResult<List<City>>> GetCities()
+        {
+            var cities = await _cityRepository.GetCities();
+            return Ok(cities);
         }
     }
 }

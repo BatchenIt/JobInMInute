@@ -33,6 +33,8 @@ namespace JobInMinuteServer.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Users");
+            migrationBuilder.DropTable(
+               name: "Jobs");
         }
     }
 }

@@ -104,8 +104,7 @@ namespace JobInMinuteServer.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CityCode"));
 
-                    b.Property<int?>("CandidatePreferedCitiesCandidateID")
-                        .HasColumnType("int");
+                    
 
                     b.Property<string>("CityName")
                         .IsRequired()
@@ -113,7 +112,6 @@ namespace JobInMinuteServer.Migrations
 
                     b.HasKey("CityCode");
 
-                    b.HasIndex("CandidatePreferedCitiesCandidateID");
 
                     b.ToTable("Cities");
                 });
@@ -245,12 +243,7 @@ namespace JobInMinuteServer.Migrations
                     b.Navigation("Candidate");
                 });
 
-            modelBuilder.Entity("JobInMinuteServer.Models.City", b =>
-                {
-                    b.HasOne("JobInMinuteServer.Models.CandidatePreferedCities", null)
-                        .WithMany("Cities")
-                        .HasForeignKey("CandidatePreferedCitiesCandidateID");
-                });
+          
 
             modelBuilder.Entity("JobInMinuteServer.Models.Job", b =>
                 {

@@ -20,6 +20,10 @@ namespace JobInMinuteServer.Controllers
         [Route("saveUser")]
         public async Task<IActionResult> SaveUser([FromBody] User user)
         {
+            if (user == null)
+            {
+                return BadRequest("User data is missing.");
+            }
             try
             {
                 await _userRepository.SaveUser(user);
@@ -31,6 +35,7 @@ namespace JobInMinuteServer.Controllers
             }
 
         }
+        
 
         [HttpGet]
         [Route("getUser")]
@@ -46,6 +51,35 @@ namespace JobInMinuteServer.Controllers
             }
 
         }
+
+        [HttpPost("login")]
+        public async Task<IActionResult> Login(string mail, string password)
+        {
+            try
+            {
+                // אתה יכול להשתמש באינטרפייס או כל מימוש של מחלקת מנהל המשתמשים כדי לבדוק את האימייל והסיסמה
+                // לדוגמה, נניח שיש לך מחלקה המייצגת מסד נתונים של משתמשים, והיא מכילה את הפעולה GetByMailAndPassword
+                // שמחזירה את המשתמש על פי האימייל והסיסמה הנתונים
+                User user = await _userRepository.GetByMailAndPassword(mail, password);
+
+                if (user != null)
+                {
+                    // אם המשתמש נמצא, המערכת תחזיר אותו כתוצאה מוצלחת
+                    return Ok(user);
+                }
+                else
+                {
+                    // אם המשתמש לא נמצא, תחזיר תגובת שגיאה מתאימה
+                    return NotFound("Invalid email or password");
+                }
+            }
+            catch (Exception ex)
+            {
+                // אם משהו השתבש בתהליך, תחזיר תגובת שגיאה
+                return BadRequest(ex.ToString());
+            }
+        }
+
 
     }
 }

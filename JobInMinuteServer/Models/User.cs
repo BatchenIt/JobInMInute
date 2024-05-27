@@ -7,7 +7,7 @@ namespace JobInMinuteServer.Models
     {
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         [Key]
-        public int ID { get; set; }
+        public int UserID { get; set; }
         [Required]
         public string Name { get; set; }
         [Required]

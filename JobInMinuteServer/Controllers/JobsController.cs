@@ -1,7 +1,12 @@
-﻿using JobInMinuteServer.DAL.Interfaces;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using JobInMinuteServer.DAL;
+using JobInMinuteServer.DAL.Interfaces;
 using JobInMinuteServer.Models;
+using JobInMinuteServer.Models.JobInMinuteServer.Models.JobInMinuteServer.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+
 
 namespace JobInMinuteServer.Controllers
 {
@@ -30,8 +35,8 @@ namespace JobInMinuteServer.Controllers
             {
                 return BadRequest(ex.ToString());
             }
-
         }
+
 
         [HttpGet(Name = "getJob")]
         public async Task<IActionResult> GetJobById(int jobId)
@@ -45,7 +50,6 @@ namespace JobInMinuteServer.Controllers
             {
                 return BadRequest(ex.ToString());
             }
-
         }
     }
 }

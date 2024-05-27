@@ -6,5 +6,6 @@ namespace JobInMinuteServer.DAL.Interfaces
     {
         Task<User> GetUserById(int userId);
         Task SaveUser(User user);
+        Task<User> GetByMailAndPassword(string mail, string password);
     }
 }

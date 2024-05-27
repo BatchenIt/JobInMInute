@@ -8,5 +8,6 @@ namespace JobInMinuteServer.Models
         public int CityCode { get; set; }
         [Required]
         public string CityName { get; set; }
+
     }
 }
