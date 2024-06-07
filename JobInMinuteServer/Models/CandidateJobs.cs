@@ -6,7 +6,7 @@ namespace JobInMinuteServer.Models
     {
         [Key]
         public int CandidateID { get; set; }
-        public Candidate Candidate { get; set; }
+        public Candidate candidate { get; set; }
         public ICollection<Job> Jobs { get; set; }
     }
 }

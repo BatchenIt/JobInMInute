@@ -15,6 +15,8 @@ namespace JobInMinuteServer.Models
         public DbSet<City> Cities { get; set; }
         public DbSet<CandidateJobs> CandidateJobs { get; set; }
         public DbSet<CandidatePreferedCities> CandidatePreferedCities { get; set; }
+        public DbSet<EmployerReview> EmployerReviews { get; set; }
+        public DbSet<CandidateJobReview> CandidateJobReviews { get; set; }
 
 
     }
