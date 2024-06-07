@@ -5,8 +5,11 @@ namespace JobInMinuteServer.DAL.Interfaces
 {
     public interface ICityRepository
     {
-        Task<City> GetCityByCityCode(int cityCode);
         Task SaveCity(City city);
+        Task<City> GetCityByCityCode(int cityCode);
+        Task<City> GetCityByCityName(string cityName);
+        Task<bool> Exists(int cityCode);
         Task<List<City>> GetCities();
+        
     }
 }

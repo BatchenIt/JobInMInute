@@ -1,8 +1,7 @@
-﻿using JobInMinuteServer.DAL;
+﻿using Humanizer;
+using JobInMinuteServer.DAL;
 using JobInMinuteServer.DAL.Interfaces;
-using JobInMinuteServer.Migrations;
 using JobInMinuteServer.Models;
-using JobInMinuteServer.Models.JobInMinuteServer.Models.JobInMinuteServer.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -15,18 +14,20 @@ namespace JobInMinuteServer.Controllers
     {
         private readonly IEmployerRepository _employerRepository;
         private readonly IUserRepository _userRepository;
+        private readonly ICandidateRepository _candidateRepository;
 
 
-        public EmployersController(IEmployerRepository employerRepository, IUserRepository userRepository)
+        public EmployersController(IEmployerRepository employerRepository, IUserRepository userRepository, ICandidateRepository candidateRepository)
         {
             _employerRepository = employerRepository;
             _userRepository = userRepository;
+            _candidateRepository = candidateRepository;
         }
 
-
-        [HttpPost(Name = "saveEmployer")]
+        [HttpPost("saveEmployer")]
         public async Task<IActionResult> SaveEmployer([FromBody] Employer employer)
         {
+
             try
             {
                 await _employerRepository.SaveEmployer(employer);
@@ -36,11 +37,9 @@ namespace JobInMinuteServer.Controllers
             {
                 return BadRequest(ex.ToString());
             }
-
         }
 
-
-        [HttpGet(Name = "getEmployer")]
+        [HttpGet("GetEmployerById")]
         public async Task<IActionResult> GetEmployerById(int employerId)
         {
             try
@@ -52,8 +51,8 @@ namespace JobInMinuteServer.Controllers
             {
                 return BadRequest(ex.ToString());
             }
-
         }
+
 
         [HttpGet("GetJobsByEmployerId")]
         public async Task<IActionResult> GetJobsByEmployerId(int employerId)

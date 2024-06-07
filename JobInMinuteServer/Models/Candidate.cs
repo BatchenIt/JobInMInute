@@ -1,18 +1,18 @@
 ﻿using Microsoft.Identity.Client;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using JobInMinuteServer.Models;
+using System.Collections.Generic;
+using System;
 
 namespace JobInMinuteServer.Models
 {
     public class Candidate
     {
-        [Key]
+        [Key, ForeignKey("User")]
         public int CandidateID { get; set; }
 
-        [ForeignKey("User")]
-        public int UserID { get; set; }
-
-        public User User { get; set; }
+        public User? User { get; set; }
 
         public float Experience { get; set; }
         public string Education { get; set; }
@@ -20,5 +20,7 @@ namespace JobInMinuteServer.Models
         public string Resume { get; set; }
         public bool Mobility { get; set; }
         public string LinkedIn { get; set; }
+
     }
 }
+

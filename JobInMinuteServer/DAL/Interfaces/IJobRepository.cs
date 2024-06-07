@@ -1,5 +1,5 @@
 ﻿using JobInMinuteServer.Models;
-using JobInMinuteServer.Models.JobInMinuteServer.Models.JobInMinuteServer.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace JobInMinuteServer.DAL.Interfaces
 {
@@ -7,10 +7,7 @@ namespace JobInMinuteServer.DAL.Interfaces
     {
         Task SaveJob(Job job);
         Task<Job> GetJobById(int jobId);
-      
-
-        // Task UpdateJob(Job job);
-        // Task<List<Job>> GetJobsByCandidateId(int candidateId, string location);
+        Task UpdateJob(Job job); // Add this line
 
     }
 }

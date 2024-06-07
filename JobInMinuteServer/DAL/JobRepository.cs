@@ -1,7 +1,6 @@
 ﻿using JobInMinuteServer.DAL.Interfaces;
-using JobInMinuteServer.Migrations;
+//using JobInMinuteServer.Migrations;
 using JobInMinuteServer.Models;
-using JobInMinuteServer.Models.JobInMinuteServer.Models.JobInMinuteServer.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace JobInMinuteServer.DAL
@@ -38,30 +37,44 @@ namespace JobInMinuteServer.DAL
 
         public async Task UpdateJob(Job job)
         {
-            _context.Entry(job).State = EntityState.Modified;
-            await _context.SaveChangesAsync();
+            try
+            {
+                _context.Jobs.Update(job);
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"An error occurred while updating the job: {ex.Message}");
+                throw;
+            }
         }
 
-   /*     public async Task<List<Job>> GetJobsByCandidateId(int candidateId, string location)
-        {
-            location ??= null; //אם ריק  null אם מלא אז נשאר
+        /*   public async Task UpdateJob(Job job)
+           {
+               _context.Entry(job).State = EntityState.Modified;
+               await _context.SaveChangesAsync();
+           }
 
-            var preferredCities = await _context.CandidatePreferedCities
-                .Where(c => c.CandidateID == candidateId)
-                .Select(c => c.CityCode)
-                .ToListAsync();
+      /*     public async Task<List<Job>> GetJobsByCandidateId(int candidateId, string location)
+           {
+               location ??= null; //אם ריק  null אם מלא אז נשאר
 
-            if (!string.IsNullOrEmpty(location))
-            {
-                preferredCities.Add(location);
-            }
+               var preferredCities = await _context.CandidatePreferedCities
+                   .Where(c => c.CandidateID == candidateId)
+                   .Select(c => c.CityCode)
+                   .ToListAsync();
 
-            var jobsInPreferredCities = await _context.Jobs
-                .Where(j => preferredCities.Contains(j.Address))
-                .ToListAsync();
+               if (!string.IsNullOrEmpty(location))
+               {
+                   preferredCities.Add(location);
+               }
 
-            return jobsInPreferredCities;
-        }*/
+               var jobsInPreferredCities = await _context.Jobs
+                   .Where(j => preferredCities.Contains(j.Address))
+                   .ToListAsync();
+
+               return jobsInPreferredCities;
+           }*/
     }
 }
 

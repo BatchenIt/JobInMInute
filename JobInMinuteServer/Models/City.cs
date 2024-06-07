@@ -1,4 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.Identity.Client;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using JobInMinuteServer.Models;
+using System.Collections.Generic;
+using System;
 
 namespace JobInMinuteServer.Models
 {
@@ -6,7 +11,8 @@ namespace JobInMinuteServer.Models
     {
         [Key]
         public int CityCode { get; set; }
-        [Required]
+
+        [Required, StringLength(50)]
         public string CityName { get; set; }
 
     }

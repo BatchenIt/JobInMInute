@@ -6,6 +6,7 @@ namespace JobInMinuteServer.DAL
 {
     public class UserRepository: IUserRepository
     {
+        
         private readonly JobInMinuteDbContext _context;
         public UserRepository(JobInMinuteDbContext context) {
             _context = context;
@@ -32,6 +33,7 @@ namespace JobInMinuteServer.DAL
 
             return user;
         }
+        
 
     }
 }
