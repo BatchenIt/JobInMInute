@@ -264,7 +264,7 @@ namespace JobInMinuteServer.Controllers
 
             if (existingEmployer.UserId != employer.UserId)
             {
-                return BadRequest("User ID cannot be changed.");
+                return BadRequest("User ID cannot  be changed.");
             }
 
             var existingUser = await _userRepository.GetUserById(employer.UserId);
