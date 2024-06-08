@@ -5,17 +5,23 @@ namespace JobInMinuteServer.Models
 {
     public class User
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+
         [Key]
-        public int ID { get; set; }
-        [Required]
+        public int UserID { get; set;}
+
+        [Required,StringLength(30)]
         public string Name { get; set; }
-        [Required]
+
+        [Required,EmailAddress]
         public string Email { get; set; }
-        [Required]
+
+        [Required,Phone]
         public string PhoneNumber { get; set; }
+
+        [StringLength(255)]
         public string ImagePath { get; set; }
-        [Required]
+
+        [Required,MinLength(8)]
         public string Password { get; set; }
         public bool isEmployer { get; set; }
     }
