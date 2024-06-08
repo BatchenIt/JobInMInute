@@ -52,19 +52,19 @@ namespace JobInMinuteServer.Controllers
 
 
 
-        [HttpGet("GetJobById")]
-        public async Task<IActionResult> GetJobById(int jobId)
-        {
-            try
-            {
-                Job job = await _jobRepository.GetJobById(jobId);
-                return Ok(job);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.ToString());
-            }
-        }
+        //[HttpGet("GetJobById")] צריך לשנות את הפונקציה GetJobById(jobId) 
+        //public async Task<IActionResult> GetJobById(int jobId)
+        //{
+        //    try
+        //    {
+        //        Job job = await _jobRepository.GetJobById(jobId);
+        //        return Ok(job);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return BadRequest(ex.ToString());
+        //    }
+        //}
 
         [HttpPost("UpdateJob")]
         public async Task<IActionResult> UpdateJob([FromBody] Job job)

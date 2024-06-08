@@ -43,34 +43,10 @@ namespace JobInMinuteServer.DAL
             }
         }
 
-        public async Task<Candidate> GetCandidateById(int CandidateID)
-        {
-            try
-            {
-                var candidate = await _context.Candidates.FindAsync(CandidateID);
-
-
-                if (candidate == null)
-                {
-                    throw new InvalidOperationException("Candidate not found.");
-                }
-                return candidate;
-            }
-            catch (Exception ex)
-            {
-                // Log the error for debugging
-                Console.WriteLine($"An error occurred while retrieving candidate with ID {CandidateID}: {ex.Message}");
-
-                throw;
-            }
-        }
-
         public async Task<bool> Exists(int CandidateID)
         {
             return await _context.Candidates.AnyAsync(e => e.CandidateID == CandidateID);
         }
-
-
 
         public async Task<List<City>> GetCitiesByCandidateId(int candidateId)
         {
@@ -139,7 +115,7 @@ namespace JobInMinuteServer.DAL
 
         public async Task<Candidate> GetCandidateById(int candidateId)
         {
-            return await _context.Candidats.FindAsync(candidateId);
+            return await _context.Candidates.FindAsync(candidateId);
             //  return await _context.Candidats
             //   .Include(c => c.User)
             //.FirstOrDefaultAsync(c => c.ID == candidateId);

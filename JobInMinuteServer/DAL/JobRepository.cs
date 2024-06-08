@@ -31,15 +31,15 @@ namespace JobInMinuteServer.DAL
           
         }
 
-        public async Task<Job> GetJobById(int jobId)
-        {
-            //return await _context.Jobs.FindAsync(jobId);
-            return await _context.Jobs
-            .Include(j => j.Employer)
-          .ThenInclude(e => e.User)
-          .FirstOrDefaultAsync(j => j.ID == jobId);
+        //public async Task<Job> GetJobById(int jobId) // צריך לשנות את הפונקציה, לא מתקמפל אחרי השינוי בDB
+        //{
+        //    //return await _context.Jobs.FindAsync(jobId);
+        //    return await _context.Jobs
+        //    .Include(j => j.Employer)
+        //  .ThenInclude(e => e.User)
+        //  .FirstOrDefaultAsync(j => j.ID == jobId);
 
-        }
+        //}
 
         public async Task UpdateJob(Job job)
         {
